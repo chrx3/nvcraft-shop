@@ -1,0 +1,89 @@
+# ============================================================
+#  NVLootShop - configuracion
+# ============================================================
+#
+#  Cada entrada de 'items' necesita:
+#    id   -> id namespaced de ItemsAdder ("namespace:item")
+#    buy  -> precio de compra. Pon 0 para que no se pueda comprar.
+#    sell -> precio de venta.  Pon 0 para que no se pueda vender.
+#
+#  El orden de la lista es el orden en que aparecen en el menu.
+#  Tras editar este archivo: /nvshop reload
+#
+#  Los precios estan calibrados contra la seccion "Mobs" de
+#  EconomyShopGUI, para que la economia no se desbalancee:
+#  ahi Gunpowder vende a 93.88 y Blaze Rod a 121.25, con una
+#  relacion compra/venta de unas 32 veces.
+
+gui:
+  title: '&8Loot de Mobs'
+  rows: 4          # 1 a 6. Con 4 filas caben 36 items.
+
+# Acople con el /sellall de EconomyShopGUI.
+#
+# ESGUI no deja registrar items nuevos en su catalogo desde otro plugin, asi que
+# no se puede hacer que su /sellall conozca los items custom. Lo que si se puede
+# es correr nuestra venta justo despues de la suya: el jugador escribe un solo
+# comando y vende todo, lo vanilla lo cobra ESGUI y lo custom lo cobramos aqui.
+#
+# Nota: /sellgui NO se puede acoplar. Es una GUI donde ESGUI valora los items al
+# soltarlos, contra su propio catalogo, y no expone ningun punto de entrada.
+sellall-hook:
+  enabled: true
+  # Comandos que disparan la venta de items custom. Sin la barra inicial.
+  # Solo actua con el comando pelado: '/sellall <algo>' se ignora, porque ahi
+  # el jugador esta pidiendo vender una seccion concreta.
+  commands:
+    - sellall
+    - sell
+
+messages:
+  prefix: '&8[&6NVcraft&8] '
+  bought: '&aComprado &f%amount%x &7%item% &apor &f$%price%'
+  sold: '&aVendido &f%amount%x &7%item% &apor &f$%price%'
+  sold-all: '&aVendiste &f%amount% &aitems por &f$%price%'
+  nothing-to-sell: '&cNo llevas nada que se pueda vender aqui.'
+  no-money: '&cTe faltan &f$%price%&c para comprar eso.'
+  no-buy: '&cEse item no esta a la venta.'
+  no-sell: '&cEse item no se puede vender.'
+  unknown-item: '&cEl item &f%item% &cya no existe en ItemsAdder.'
+  economy-error: '&cLa transaccion fallo. No se te cobro nada.'
+  no-permission: '&cNo tienes permiso para eso.'
+  reloaded: '&aConfiguracion recargada. &f%amount% &aitems cargados.'
+
+items:
+
+  # --- Comunes: mobs pacificos y faciles -------------------
+  - {id: 'mob_loots_expansion:wool_ball',           buy: 640,   sell: 20}
+  - {id: 'mob_loots_expansion:pig_leather',         buy: 640,   sell: 20}
+  - {id: 'mob_loots_expansion:parrot_feather',      buy: 640,   sell: 20}
+  - {id: 'mob_loots_expansion:bat_wing',            buy: 640,   sell: 20}
+  - {id: 'mob_loots_expansion:squid_tentacle',      buy: 640,   sell: 20}
+  - {id: 'mob_loots_expansion:fish_oil',            buy: 640,   sell: 20}
+  - {id: 'mob_loots_expansion:mushroom_spores',     buy: 640,   sell: 20}
+  - {id: 'mob_loots_expansion:frog_leg',            buy: 640,   sell: 20}
+
+  # --- Poco comunes: hostiles corrientes -------------------
+  - {id: 'mob_loots_expansion:gel',                 buy: 1440,  sell: 45}
+  - {id: 'mob_loots_expansion:poison_sac',          buy: 1440,  sell: 45}
+  - {id: 'mob_loots_expansion:desert_cloth',        buy: 1440,  sell: 45}
+  - {id: 'mob_loots_expansion:wolf_fang',           buy: 1440,  sell: 45}
+  - {id: 'mob_loots_expansion:axolotl_mucus',       buy: 1440,  sell: 45}
+  - {id: 'mob_loots_expansion:dolphin_fin',         buy: 1440,  sell: 45}
+  - {id: 'mob_loots_expansion:ice_shards',          buy: 1440,  sell: 45}
+  - {id: 'mob_loots_expansion:magma_gel',           buy: 1440,  sell: 45}
+
+  # --- Raros: requieren buscar o pelear en serio -----------
+  - {id: 'mob_loots_expansion:ectoplasm',           buy: 3520,  sell: 110}
+  - {id: 'mob_loots_expansion:ender_powder',        buy: 3520,  sell: 110}
+  - {id: 'mob_loots_expansion:phantom_scale',       buy: 3520,  sell: 110}
+  - {id: 'mob_loots_expansion:ghast_eye',           buy: 3520,  sell: 110}
+  - {id: 'mob_loots_expansion:guardian_spike',      buy: 3520,  sell: 110}
+  - {id: 'mob_loots_expansion:honey_crystal',       buy: 3520,  sell: 110}
+  - {id: 'mob_loots_expansion:glow_squid_tentacle', buy: 3520,  sell: 110}
+  - {id: 'mob_loots_expansion:magic_crystals',      buy: 3520,  sell: 110}
+  - {id: 'mob_loots_expansion:aqua_essence',        buy: 3520,  sell: 110}
+
+  # --- Epicos: jefes y mobs de alto riesgo -----------------
+  - {id: 'mob_loots_expansion:wither_dust',         buy: 14400, sell: 450}
+  - {id: 'mob_loots_expansion:warden_heart',        buy: 14400, sell: 450}

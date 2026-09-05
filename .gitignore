@@ -1,0 +1,15 @@
+AGENTS.md
+target/
+.idea/
+*.iml
+*.ipr
+*.iws
+.classpath
+.project
+.settings/
+.vscode/
+*.class
+.DS_Store
+Thumbs.db
+hs_err_pid*
+replay_pid*

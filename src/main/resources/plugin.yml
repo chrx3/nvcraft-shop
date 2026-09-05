@@ -1,0 +1,25 @@
+name: NVLootShop
+version: '${project.version}'
+main: cl.nvcraft.lootshop.NVLootShop
+api-version: '1.21'
+author: NVcraft
+description: Compra y venta de items custom de ItemsAdder, con economia via Vault.
+
+# Ambos son obligatorios: sin ellos el plugin no tiene nada que hacer.
+depend:
+  - Vault
+  - ItemsAdder
+
+commands:
+  nvshop:
+    description: Abre la tienda de loot custom.
+    usage: /nvshop [sellall|reload]
+    aliases: [mobshop, lootshop]
+
+permissions:
+  nvlootshop.use:
+    description: Permite abrir la tienda y comerciar.
+    default: true
+  nvlootshop.admin:
+    description: Permite recargar la configuracion.
+    default: op
